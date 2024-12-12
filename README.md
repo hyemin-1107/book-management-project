@@ -60,7 +60,7 @@ cd book-management-project
 
 이 프로젝트는 Vercel을 통해 배포되었습니다. 배포된 웹 애플리케이션을 아래 링크에서 확인할 수 있습니다.
 ```bash
-
+https://book-management-eight-henna.vercel.app
 ```
 
 ---
