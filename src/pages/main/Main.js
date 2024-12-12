@@ -6,6 +6,7 @@ import styled from "styled-components";
 import DetailedPageModal from "./components/DetailedPage";
 import Pagination from "./components/Pagination";
 import SearchBook from "./components/SearchBook";
+import BookList from "./components/BookList";
 
 const Main = () => {
     const [dischargeBooks, setDischargeBooks] = useRecoilState(booksState);
@@ -85,22 +86,10 @@ const Main = () => {
                 </Link>
             </SearchAddSection>
             
-            <ul>
-                {currentPageItems.map(book => (
-                    <li key={book.id} onClick={() => onClickModal(book.id)}>
-                        <BookList>
-                            <span>
-                                <p>{book.id}.</p>
-                                <h2>{book.title}</h2>
-                            </span>
-                            <div>
-                                <strong>{book.author}</strong>
-                                <p>{book.publisher}</p>
-                            </div>
-                        </BookList>
-                    </li>
-                ))}
-            </ul>
+            <BookList
+                currentPageItems={currentPageItems}
+                onClickModal={onClickModal}
+            />
 
             {selectedBook && (
                 <DetailedPageModal
@@ -176,41 +165,4 @@ const AddBookButton = styled.button`
     border-radius: 3px;
 
     cursor: pointer;
-`
-
-const BookList = styled.button`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 8px 18px;
-    gap: 30px;
-
-    width: 100%;
-
-    border-bottom: .5px solid #999;
-
-    background-color: #fff;
-
-    cursor: pointer;
-
-    strong{
-
-    }
-    span{
-        display: flex;
-        align-items: center;
-        font-size: 16px;
-        font-weight: 600;
-        gap: 6px;
-    }
-    div{
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        p{
-            color: #333;
-        }
-
-    }
 `
