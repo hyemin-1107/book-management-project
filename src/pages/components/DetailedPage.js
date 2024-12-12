@@ -1,20 +1,20 @@
 import { useRecoilState } from "recoil";
-import { booksState } from "../../utills/recoil";
+import { booksState } from "../../atom/recoil";
 import styled from "styled-components";
 
 
 const DetailedPageModal = (props) => {
     
     const { isModal, book, onClickCloseButton, setFilteredBooks } = props;
-    const [books, setBooks] = useRecoilState(booksState);
+    const [dischargeBooks, setDischargeBooks] = useRecoilState(booksState);
 
     const handleQuantityChange = (id, newQuantity) => {
 
-        const updatedQuantityBooks = books.map(b =>
+        const updatedQuantityBooks = dischargeBooks.map(b =>
             b.id === id ? { ...b, quantity: newQuantity } : b
         );
 
-        setBooks(updatedQuantityBooks);
+        setDischargeBooks(updatedQuantityBooks);
         localStorage.setItem("books", JSON.stringify(updatedQuantityBooks));
     };
     
@@ -22,8 +22,8 @@ const DetailedPageModal = (props) => {
         
         if (window.confirm("정말 이 도서를 삭제하시겠습니까?")) {
 
-            const updatedBooks = books.filter(b => b.id !== id);
-            setBooks(updatedBooks);
+            const updatedBooks = dischargeBooks.filter(b => b.id !== id);
+            setDischargeBooks(updatedBooks);
 
             localStorage.setItem("books", JSON.stringify(updatedBooks));
             

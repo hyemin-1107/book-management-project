@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { booksState } from "../utills/recoil";
+import { booksState } from "../atom/recoil";
 import { Link } from "react-router-dom"; 
 import styled from "styled-components";
 import DetailedPageModal from "./components/DetailedPage";
@@ -8,7 +8,7 @@ import Pagination from "./components/Pagination";
 import SearchBook from "./components/SearchBook";
 
 const Main = () => {
-    const [books, setBooks] = useRecoilState(booksState);
+    const [dischargeBooks, setDischargeBooks] = useRecoilState(booksState);
 
     const [page, setPage] = useState(1);
     const [totalItems, setTotalItems] = useState(0);
@@ -28,7 +28,7 @@ const Main = () => {
         setIsModal(false);
     };
 
-    const selectedBook = books.find(book => book.id === selectedBookId);
+    const selectedBook = dischargeBooks.find(book => book.id === selectedBookId);
 
     const loadBooksData = (data) => {
 
@@ -38,7 +38,7 @@ const Main = () => {
             ...new Map([...data, ...saveBooks].map(book => [book.id, book])).values()
         ];
 
-        setBooks(joinBooks);
+        setDischargeBooks(joinBooks);
         setFilteredBooks(joinBooks);
         setTotalItems(joinBooks.length);
     };
@@ -79,7 +79,7 @@ const Main = () => {
             <Header>Book List</Header>
 
             <SearchAddSection>
-                <SearchBook books={books} handleSearch={handleSearch} />
+                <SearchBook dischargeBooks={dischargeBooks} handleSearch={handleSearch} />
                 <Link to="/add-book">
                     <AddBookButton>도서 추가</AddBookButton>
                 </Link>
@@ -117,7 +117,7 @@ const Main = () => {
             ) : (
                 <Pagination
                     page={page}
-                    totalItems={totalItems}
+                    totalItems={filteredBooks}
                     limit={limit}
                     onChangePage={onChangePage}
                 />

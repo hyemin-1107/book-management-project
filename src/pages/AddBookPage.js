@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { useRecoilState } from "recoil";
-import { booksState } from "../utills/recoil";
+import { booksState } from "../atom/recoil";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 
 const AddBookPage = () => {
 
-    const [books, setBooks] = useRecoilState(booksState);
+    const [dischargeBooks, setDischargeBooks] = useRecoilState(booksState);
 
     const [newBook, setNewBook] = useState({
         id: "",
@@ -49,9 +49,9 @@ const AddBookPage = () => {
         }
     };
 
-    const addBook = (books, setBooks, bookToAdd) => {
+    const addBook = (dischargeBooks, setBooks, bookToAdd) => {
         
-        const updatedBooks = [ bookToAdd, ...books];
+        const updatedBooks = [ ...dischargeBooks, bookToAdd];
 
         localStorage.setItem("books", JSON.stringify(updatedBooks));
 
@@ -68,11 +68,11 @@ const AddBookPage = () => {
             return;
         }
 
-        const newId = books.length + 1;
+        const newId = dischargeBooks.length + 1;
     
         const bookToAdd = { ...newBook, id: newId };
          
-        addBook(books, setBooks, bookToAdd);
+        addBook(dischargeBooks, setDischargeBooks, bookToAdd);
 
         alert("도서가 성공적으로 추가되었습니다.");
         navigate("/");

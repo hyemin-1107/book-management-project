@@ -1,14 +1,11 @@
 import React from "react";
-import { useRecoilState } from "recoil";
-import { booksState } from "../../utills/recoil";
 import styled from "styled-components";
 
 const Pagination = (props) => {
 
-    const { onChangePage, page, limit } = props;
-    const [setBooks] = useRecoilState(booksState);
+    const { onChangePage, page, limit, totalItems } = props;
 
-    const totalPages = Math.ceil(setBooks.length / limit);
+    const totalPages = Math.ceil(totalItems.length / limit);
 
     const pageNumber = [];
     for (let i = 1; i <= totalPages; i++) {

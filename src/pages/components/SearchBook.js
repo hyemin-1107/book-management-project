@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 const SearchBook = (props) => {
     
-    const { books, handleSearch } = props;
+    const { dischargeBooks, handleSearch } = props;
 
     const [searchType, setSearchType] = useState("title");
     const [keyword, setKeyword] = useState("");
 
     const handleFilterBooksSearch = () => { 
         
-        const filterBooks = books.filter(book =>
+        const filterBooks = dischargeBooks.filter(book =>
             book[searchType].toLowerCase().includes(keyword.toLowerCase())
         );
         handleSearch(filterBooks);
