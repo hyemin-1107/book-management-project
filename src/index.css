@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #202020;
+}
+
+ul {
+  list-style: none;
+}
+button{
+  border: none;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
