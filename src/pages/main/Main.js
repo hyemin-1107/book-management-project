@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { booksState } from "../atom/recoil";
+import { booksState } from "../../atom/recoil";
 import { Link } from "react-router-dom"; 
 import styled from "styled-components";
 import DetailedPageModal from "./components/DetailedPage";
@@ -45,7 +45,7 @@ const Main = () => {
 
     const loadBooksJSON = () => {
 
-        fetch('/books.json')
+        fetch('booksData/books.json')
             .then(response => response.json())
             .then(data => {
                 loadBooksData(data);

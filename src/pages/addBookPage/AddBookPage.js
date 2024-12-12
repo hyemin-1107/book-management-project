@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useRecoilState } from "recoil";
-import { booksState } from "../atom/recoil";
+import { booksState } from "../../atom/recoil";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -49,13 +49,13 @@ const AddBookPage = () => {
         }
     };
 
-    const addBook = (dischargeBooks, setBooks, bookToAdd) => {
+    const addBook = (dischargeBooks, setDischargeBooks, bookToAdd) => {
         
         const updatedBooks = [ ...dischargeBooks, bookToAdd];
 
         localStorage.setItem("books", JSON.stringify(updatedBooks));
 
-        setBooks(updatedBooks);
+        setDischargeBooks(updatedBooks);
     };
 
 

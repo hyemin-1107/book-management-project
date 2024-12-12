@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { booksState } from "../../atom/recoil";
+import { booksState } from "../../../atom/recoil";
 import styled from "styled-components";
 
 

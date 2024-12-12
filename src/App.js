@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import Main from "./pages/Main";
-import AddBookPage from "./pages/AddBookPage";
+import Main from "./pages/main/Main";
+import AddBookPage from "./pages/addBookPage/AddBookPage";
 
 function App() {
   return (
