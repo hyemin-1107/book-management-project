@@ -31,6 +31,7 @@ const AddBookPage = () => {
         if (type === "file") {
             const file = files[0];
             if (file) {
+
                 const reader = new FileReader();
                 reader.onloadend = () => {
                     setNewBook(prevBook => ({
@@ -49,13 +50,13 @@ const AddBookPage = () => {
         }
     };
 
-    const addBook = (dischargeBooks, setDischargeBooks, bookToAdd) => {
+    const addBook = (bookToAdd) => {
         
-        const updatedBooks = [ ...dischargeBooks, bookToAdd];
-
-        localStorage.setItem("books", JSON.stringify(updatedBooks));
-
-        setDischargeBooks(updatedBooks);
+        setDischargeBooks((dischargeBooks) => {
+            const updatedBooks = [...dischargeBooks, bookToAdd];
+            localStorage.setItem("books", JSON.stringify(updatedBooks));
+            return updatedBooks;
+        });
     };
 
 
@@ -72,7 +73,7 @@ const AddBookPage = () => {
     
         const bookToAdd = { ...newBook, id: newId };
          
-        addBook(dischargeBooks, setDischargeBooks, bookToAdd);
+        addBook(bookToAdd);
 
         alert("도서가 성공적으로 추가되었습니다.");
         navigate("/");
@@ -113,31 +114,31 @@ const AddBookPageWrap = styled.div`
 `
 
 const AddBookForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
-  input {
-    padding: 8px;
+    input {
+        padding: 8px;
 
-    font-size: 14px;
-  }
+        font-size: 14px;
+    }
 
-  button {
-    padding: 8px;
-    margin-top: 16px;
+    button {
+        padding: 8px;
+        margin-top: 16px;
 
-    font-size: 16px;
-    font-weight: 700;
+        font-size: 16px;
+        font-weight: 700;
 
-    background-color: #1b5ac2;
-    color: white;
-    
-    border-radius: 3px;
-    border: none;
-    
-    cursor: pointer;
-  }
+        background-color: #1b5ac2;
+        color: white;
+
+        border-radius: 3px;
+        border: none;
+
+        cursor: pointer;
+    }
 `
 
 const ADD_BOOK_INPUT = [

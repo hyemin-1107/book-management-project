@@ -6,20 +6,20 @@ const BookList = (props) => {
 
     return (
         <ul>
-                {currentPageItems.map(book => (
-                    <li key={book.id} onClick={() => onClickModal(book.id)}>
-                        <BookListButton>
-                            <span>
-                                <p>{book.id}.</p>
-                                <h2>{book.title}</h2>
-                            </span>
-                            <div>
-                                <strong>{book.author}</strong>
-                                <p>{book.publisher}</p>
-                            </div>
-                        </BookListButton>
-                    </li>
-                ))}
+            {currentPageItems.map(book => (
+                <li key={book.id} onClick={() => onClickModal(book.id)}>
+                    <BookListButton>
+                        <span>
+                            <p>{book.id}.</p>
+                            <h2>{book.title}</h2>
+                        </span>
+                        <div>
+                            <strong>{book.author}</strong>
+                            <p>{book.publisher}</p>
+                        </div>
+                    </BookListButton>
+                </li>
+            ))}
         </ul>
     )
 }
@@ -46,16 +46,21 @@ const BookListButton = styled.button`
     strong{
 
     }
+
     span{
         display: flex;
         align-items: center;
+
         font-size: 16px;
         font-weight: 600;
+        
         gap: 6px;
     }
+        
     div{
         display: flex;
         align-items: center;
+
         gap: 14px;
         p{
             color: #333;

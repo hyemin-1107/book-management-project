@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { booksState } from "../../atom/recoil";
-import { Link } from "react-router-dom"; 
 import styled from "styled-components";
 import DetailedPageModal from "./components/DetailedPage";
 import Pagination from "./components/Pagination";
-import SearchBook from "./components/SearchBook";
 import BookList from "./components/BookList";
+import SearchBookSection from "./components/SearchBookSection";
+import HeaderContent from "./components/Header";
 
 const Main = () => {
+
     const [dischargeBooks, setDischargeBooks] = useRecoilState(booksState);
 
     const [page, setPage] = useState(1);
@@ -44,7 +45,7 @@ const Main = () => {
         setTotalItems(joinBooks.length);
     };
 
-    const loadBooksJSON = () => {
+    const loadBooksSavedData = () => {
 
         fetch('booksData/books.json')
             .then(response => response.json())
@@ -56,7 +57,7 @@ const Main = () => {
 
     useEffect(() => {
 
-        loadBooksJSON();
+        loadBooksSavedData();
     }, []);
 
     const onChangePage = (newPage) => {
@@ -77,15 +78,12 @@ const Main = () => {
 
     return (
         <MainPage>
-            <Header>Book List</Header>
+            <HeaderContent />
 
-            <SearchAddSection>
-                <SearchBook dischargeBooks={dischargeBooks} handleSearch={handleSearch} />
-                <Link to="/add-book">
-                    <AddBookButton>도서 추가</AddBookButton>
-                </Link>
-            </SearchAddSection>
-            
+            <SearchBookSection
+                handleSearch={handleSearch}
+            />
+
             <BookList
                 currentPageItems={currentPageItems}
                 onClickModal={onClickModal}
@@ -132,37 +130,4 @@ const MainPage = styled.main`
             text-align: left;
         }
     }
-`
-
-const Header = styled.h1`
-    display:flex;
-    justify-content: center;
-
-    margin-bottom: 90px;
-
-    font-size: 44px;
-    font-weight: 600;
-`
-
-const SearchAddSection = styled.section`
-    display: flex;
-    justify-content: center;
-
-    gap: 22px;
-
-    margin-bottom: 30px;
-`
-
-const AddBookButton = styled.button`
-    width: 140px;
-    height: 42px;
-    
-    font-weight: 600;
-
-    color: #fff;
-    background-color: #1b5ac2;
-    
-    border-radius: 3px;
-
-    cursor: pointer;
 `

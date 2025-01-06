@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { booksState } from "../../../atom/recoil";
 
 const SearchBook = (props) => {
-    
-    const { dischargeBooks, handleSearch } = props;
+    const [ dischargeBooks ] = useRecoilState(booksState);
+
+
+    const { handleSearch } = props;
 
     const [searchType, setSearchType] = useState("title");
     const [keyword, setKeyword] = useState("");
