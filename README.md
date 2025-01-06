@@ -28,10 +28,10 @@ React를 기반으로 제작되었으며 로컬 스토리지를 활용하여 데
 ### 📂 폴더 구조
 
 ```bash
-📦 book-management-project 
-┣ 📂 public 
+📦 book-management-project
+┣ 📂 public
 ┃ ┗ 📜 books.json
-┣ 📂 src 
+┣ 📂 src
 ┃ ┣ 📂 pages
 ┃ ┃ ┣ 📂 components
 ┃ ┃ ┃ ┣ 📜 DetailedPage.js
@@ -47,18 +47,22 @@ React를 기반으로 제작되었으며 로컬 스토리지를 활용하여 데
 ```
 
 ---
+
 ---
 
 ### 💻 설치 및 실행 방법
 
 #### 1. 프로젝트 클론
+
 ```bash
 git clone https://github.com/your-username/book-management-project.git
 cd book-management-project
 ```
+
 #### 2. 프로젝트 URL
 
 이 프로젝트는 Vercel을 통해 배포되었습니다. 배포된 웹 애플리케이션을 아래 링크에서 확인할 수 있습니다.
+
 ```bash
 https://book-management-eight-henna.vercel.app
 ```
@@ -84,17 +88,19 @@ https://book-management-eight-henna.vercel.app
 
 **이미지**
 
-
 ---
 
 ### 📖 구현 과정
 
-목업 데이터를 활용하여 데이터를 구성했습니다. 
+목업 데이터를 활용하여 데이터를 구성했습니다.
 public폴더에 books.json파일 생성 후 국립중앙도서관의 도서 목록 일부를 가져와 사용했습니다.
-https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=63513d7b-9b87-4ec1-a398-0a18ecc45411
 
+```bash
+https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=63513d7b-9b87-4ec1-a398-0a18ecc45411
+```
 
 Recoil을 사용하여 전역 상태를 관리하고 있습니다. booksState atom을 정의하여 책 목록 데이터를 관리하고 상태를 여러 컴포넌트에서 공유할 수 있도록 했습니다.
+
 ```bash
 // recoil.js
 
@@ -106,7 +112,9 @@ export const booksState = atom({
 ```
 
 ---
+
 json파일을 불러오고, 로컬 스토리지에 저장된 데이터를 결합하고 상태를 업데이트합니다.
+
 ```bash
 //Main.js
 
@@ -138,7 +146,9 @@ const loadBooksJSON = () => {
 ```
 
 ---
+
 새로운 책을 추가할 때 setBooks를 사용하여 상태를 업데이트하고 localStorage에도 책 목록을 저장합니다.
+
 ```bash
 // AddBookPage.js
 
@@ -161,16 +171,18 @@ const handleSubmit = (e) => {
     const newId = books.length + 1;
     // 새로운 도서 객체 생성
     const bookToAdd = { ...newBook, id: newId };
-    //기존의 책 목록과 새로 추가된 책을 합친 배열 반환  
+    //기존의 책 목록과 새로 추가된 책을 합친 배열 반환
     addBook(books, setBooks, bookToAdd);
 
     alert("도서가 성공적으로 추가되었습니다.");
     navigate("/");
 };
 ```
+
 ---
 
 handleDeleteBook 함수에서는 책 삭제 전 사용자에게 확인을 요청하고 확인 후 책을 삭제하고 상태를 업데이트합니다.
+
 ```bash
 // DetailedPage.js
 
@@ -192,6 +204,7 @@ const handleDeleteBook = (id) => {
 ---
 
 handleQuantityChange 함수에서는 도서 수량을 변경한 후 상태와 localStorage를 업데이트합니다.
+
 ```bash
 //DetailedPage.js
 
@@ -210,6 +223,7 @@ const handleQuantityChange = (id, newQuantity) => {
 ---
 
 selectedBook이 있을 때만 모달을 보여주고 상태를 통해 모달을 제어합니다.
+
 ```bash
 //Main.js
 
@@ -236,6 +250,7 @@ const selectedBook = books.find(book => book.id === selectedBookId);
 ---
 
 검색어를 입력하면 입력된 검색어에 맞는 책만 필터링하여 표시합니다.
+
 ```bash
 //Main.js
 // 부모 컴포넌트
@@ -253,7 +268,7 @@ return (
 const [keyword, setKeyword] = useState(""); // ""의 공백이 있으면 인풋 클릭시 자동 띄어쓰기가 된다.
 
 const handleFilterBooksSearch = () => {
-    // 상태 searchType 기본값 "title"로 설정, 동일한 키워드 있을 시 포함하는 배열 생성 
+    // 상태 searchType 기본값 "title"로 설정, 동일한 키워드 있을 시 포함하는 배열 생성
     const filterBooks = books.filter(book =>
         book[searchType].toLowerCase().includes(keyword.toLowerCase())
     );
@@ -262,11 +277,13 @@ const handleFilterBooksSearch = () => {
 ```
 
 ---
-토탈 도서 수를 계산하여 배열에 담고 페이지를 표시합니다. 
+
+토탈 도서 수를 계산하여 배열에 담고 페이지를 표시합니다.
 handlePageChange는 다른 페이지 클릭시 브라우저 상단으로 이동합니다.
+
 ```bash
 // Pagination.js
-    
+
 const totalPages = Math.ceil(setBooks.length / limit);
 
 //totalPages를 배열에 담아서 나열
@@ -280,20 +297,9 @@ const handlePageChange = (number) => {
     window.scrollTo({ top: 0, behavior: "smooth" })
 }
 ```
+
 ---
+
 ---
 
 ##
-
-
-
-
-
-
-
-
-
-
-
-
-
