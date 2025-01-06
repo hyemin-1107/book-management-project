@@ -30,17 +30,23 @@ React를 기반으로 제작되었으며 로컬 스토리지를 활용하여 데
 ```bash
 📦 book-management-project
 ┣ 📂 public
-┃ ┗ 📜 books.json
+┃ ┣ 📜 books.json
+┃ ┗ 📂 images
 ┣ 📂 src
+┃ ┣ 📂 atom
+┃ ┃ ┗ 📜recoil.js
 ┃ ┣ 📂 pages
-┃ ┃ ┣ 📂 components
-┃ ┃ ┃ ┣ 📜 DetailedPage.js
-┃ ┃ ┃ ┣ 📜 Pagination.js
-┃ ┃ ┃ ┗ 📜 SearchBook.js
-┃ ┃ ┣ 📜 AddBookPage.js
-┃ ┃ ┗ 📜 Main.js
-┃ ┣ 📂 utills
-┃ ┃ ┗ 📜 recoil.js
+┃ ┃ ┣ 📂addBookPage
+┃ ┃ ┃ ┗ 📜AddBookPage.js
+┃ ┃ ┣ 📂main
+┃ ┃ ┃ ┣ 📂components
+┃ ┃ ┃ ┣ 📜BookList.js
+┃ ┃ ┃ ┣ 📜DetailedPage.js
+┃ ┃ ┃ ┣ 📜Header.js
+┃ ┃ ┃ ┣ 📜Pagination.js
+┃ ┃ ┃ ┣ 📜SearchBook.js
+┃ ┃ ┃ ┗ 📜SearchBookSection.js
+┃ ┃ ┗ 📜Main.js
 ┣ 📜 App.js
 ┣ 📜 index.css
 ┗ 📜 index.js
@@ -87,7 +93,13 @@ https://book-management-eight-henna.vercel.app
 - **모달 창을 열면 각 도서의 상세 정보와 수량 조절 기능이 있습니다.**
 
 ![main](public/images/main.png)
+
+---
+
 ![detail](public/images/detail.png)
+
+---
+
 ![search](public/images/search.png)
 
 ---
